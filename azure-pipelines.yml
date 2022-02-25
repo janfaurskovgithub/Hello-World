@@ -4,10 +4,23 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+      - main
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  - name: ResourceGroupName
+    value: "rsg-github-pr-$(System.PullRequest.PullRequestId)"
+  - name: ManagementGroupPrefix
+    value: "PR-$(System.PullRequest.PullRequestId)"
+  - name: TopLevelManagementGroupDisplayName
+    value: "PR $(System.PullRequest.PullRequestId) Azure Landing Zones"
+  - name: SubscriptionName
+    value: "sub-unit-test-pr-$(System.PullRequest.PullRequestId)"
 
 steps:
 - script: echo Hello, world!
@@ -16,4 +29,8 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
+    echo $(ResourceGroupName)
+    echo $(ManagementGroupPrefix)
+    echo $(TopLevelManagementGroupDisplayName)
+    echo $(SubscriptionName)
   displayName: 'Run a multi-line script'
