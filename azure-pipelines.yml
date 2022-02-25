@@ -17,7 +17,7 @@ pool:
 
 variables:
   - name: ResourceGroupName
-    value: "rsg-github-pr-$(System.PullRequest.PullRequestId)"
+    value: "rsg-github-pr-$(System.PullRequest.PullRequestNumber)"
   - name: ManagementGroupPrefix
     value: "PR-$(System.PullRequest.PullRequestId)"
   - name: TopLevelManagementGroupDisplayName
