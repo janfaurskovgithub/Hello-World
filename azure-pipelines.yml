@@ -7,9 +7,9 @@ trigger:
   batch: true
   branches:
     include:
-      - master
-  pr:
-    - master
+      - 
+#  pr:
+#     - master 
 
 
 pool:
