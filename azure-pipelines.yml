@@ -3,7 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-# trigger:
+trigger: none
+
 #   batch: true
 #   branches:
 #     include:
@@ -26,8 +27,12 @@ variables:
     value: "sub-unit-test-pr-$(System.PullRequest.PullRequestId)"
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: PowerShell@2
+  displayName: Bicep Build to Test for PR
+  inputs:
+    targetType: 'inline'
+    script: |
+      dir env:
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
@@ -37,3 +42,5 @@ steps:
     echo $(TopLevelManagementGroupDisplayName)
     echo $(SubscriptionName)
   displayName: 'Run a multi-line script'
+
+  
